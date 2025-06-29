@@ -1,0 +1,11 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import "tailwindcss";
+@plugin "daisyui";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.custom-font {
+  font-family: 'Josefin Sans', sans-serif;
+}
