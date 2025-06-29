@@ -123,7 +123,7 @@ const ProjectCard = ({ project }) => {
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col items-center md:flex-row min-h-[300px]">
       {/* Image Slider with Animation */}
-      <div className="md:w-1/2 h-64 md:h-[400px] relative bg-black overflow-hidden">
+      <div className="md:w-1/2 w-full h-64 md:h-[400px] relative bg-black overflow-hidden">
         {/* Fade animation */}
         <div className="relative w-full h-full">
           {images.map((img, index) => (
