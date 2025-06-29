@@ -105,7 +105,7 @@ const ProjectCard = ({ project }) => {
   const { name, description, technologies, images, links } = project;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Auto-slide images every 3 seconds
+  // Auto-slide every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((i) => (i === images.length - 1 ? 0 : i + 1));
@@ -122,45 +122,54 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col items-center md:flex-row min-h-[300px]">
-      {/* Left slider section */}
-      <div className="md:w-1/2 h-64 md:h-[400px] relative group bg-black">
-  <img
-    src={images[currentImageIndex]}
-    alt={`${name} screenshot ${currentImageIndex + 1}`}
-    className="w-full h-full object-contain object-center transition-transform duration-500"
-  />
-  {/* Prev/Next buttons */}
-  <button
-    onClick={prevImage}
-    className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-yellow-400 text-white rounded-full p-1 md:p-2 opacity-80 hover:opacity-100 transition"
-    aria-label="Previous image"
-  >
-    ‹
-  </button>
-  <button
-    onClick={nextImage}
-    className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-yellow-400 text-white rounded-full p-1 md:p-2 opacity-80 hover:opacity-100 transition"
-    aria-label="Next image"
-  >
-    ›
-  </button>
-  {/* Image indicators */}
-  <div className="absolute bottom-2 md:bottom-4 left-1/2 transform -translate-x-1/2 flex gap-1 md:gap-2">
-    {images.map((_, idx) => (
-      <button
-        key={idx}
-        onClick={() => setCurrentImageIndex(idx)}
-        className={`w-2 h-2 md:w-3 md:h-3 rounded-full ${
-          idx === currentImageIndex ? 'bg-yellow-500' : 'bg-yellow-300'
-        }`}
-        aria-label={`Show image ${idx + 1}`}
-      />
-    ))}
-  </div>
-</div>
+      {/* Image Slider with Animation */}
+      <div className="md:w-1/2 h-64 md:h-[400px] relative bg-black overflow-hidden">
+        {/* Fade animation */}
+        <div className="relative w-full h-full">
+          {images.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`${name} screenshot ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ${
+                index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            />
+          ))}
+        </div>
 
+        {/* Prev/Next Buttons */}
+        <button
+          onClick={prevImage}
+          className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-yellow-400 text-white rounded-full p-1 md:p-2 opacity-80 hover:opacity-100 transition"
+          aria-label="Previous image"
+        >
+          ‹
+        </button>
+        <button
+          onClick={nextImage}
+          className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-yellow-400 text-white rounded-full p-1 md:p-2 opacity-80 hover:opacity-100 transition"
+          aria-label="Next image"
+        >
+          ›
+        </button>
 
-      {/* Right details section */}
+        {/* Indicators */}
+        <div className="absolute bottom-2 md:bottom-4 left-1/2 transform -translate-x-1/2 flex gap-1 md:gap-2">
+          {images.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentImageIndex(idx)}
+              className={`w-2 h-2 md:w-3 md:h-3 rounded-full ${
+                idx === currentImageIndex ? 'bg-yellow-500' : 'bg-yellow-300'
+              }`}
+              aria-label={`Show image ${idx + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Project Details */}
       <div className="md:w-1/2 p-4 md:p-8 flex flex-col justify-between">
         <div>
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 md:mb-6">{name}</h3>

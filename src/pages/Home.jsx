@@ -1,3 +1,4 @@
+// src/pages/Home.jsx
 import { useEffect } from "react";
 import Hero from '../sections/Hero';
 import About from '../sections/About';
@@ -10,6 +11,11 @@ import Contact from '../sections/Contact';
 const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // 🧹 Remove hash from URL after reload
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
   }, []);
 
   return (
