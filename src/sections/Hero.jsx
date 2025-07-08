@@ -24,7 +24,7 @@ const Hero = () => {
         </p>
 
        <a
-        href="/Md. Firozzaman resume.pdf"
+        href="https://drive.google.com/file/d/1FSuxzuyWvCqzO2T7R2svijYgdC-CYHW6/view?usp=sharing" target='_blank'
         download
         className="
             inline-block
@@ -43,7 +43,7 @@ const Hero = () => {
             text-center
         "
         >
-        Download Resume
+        My Resume
         </a>
 
         <div className="flex space-x-6 text-2xl text-gray-600">
